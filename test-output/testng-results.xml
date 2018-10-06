@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="All Test Suite" duration-ms="448" started-at="2018-10-06T03:35:26Z" finished-at="2018-10-06T03:35:27Z">
+    <groups>
+    </groups>
+    <test name="/Users/wyjsky/IdeaProjects/wyjauto" duration-ms="448" started-at="2018-10-06T03:35:26Z" finished-at="2018-10-06T03:35:27Z">
+      <class name="com.test.Test1">
+        <test-method status="PASS" signature="loginInit()[pri:0, instance:com.test.Test1@7d417077]" name="loginInit" is-config="true" duration-ms="27" started-at="2018-10-06T11:35:26Z" finished-at="2018-10-06T11:35:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginInit -->
+        <test-method status="PASS" signature="testTest1()[pri:0, instance:com.test.Test1@7d417077]" name="testTest1" duration-ms="441" started-at="2018-10-06T11:35:26Z" finished-at="2018-10-06T11:35:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTest1 -->
+        <test-method status="PASS" signature="closeSession()[pri:0, instance:com.test.Test1@7d417077]" name="closeSession" is-config="true" duration-ms="0" started-at="2018-10-06T11:35:27Z" finished-at="2018-10-06T11:35:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeSession -->
+      </class> <!-- com.test.Test1 -->
+    </test> <!-- /Users/wyjsky/IdeaProjects/wyjauto -->
+  </suite> <!-- All Test Suite -->
+</testng-results>

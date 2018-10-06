@@ -1,0 +1,16 @@
+<!-- -->
+<ivy-module version="2.0">
+    <info module="Test1" organisation=""/>
+
+    <dependencies>
+        <dependency org="commons-lang" name="commons-lang" rev="2.6"/>
+        <dependency org="commons-cli" name="commons-cli" rev="1.4"/>
+        <dependency org="org.testng" name="testng" rev="6.10"/>
+        <dependency org="log4j" name="log4j" rev="1.2.17"/>
+        <dependency org="com.jcraft" name="jsch" rev="0.1.54"/>
+        <dependency org="com.vaadin.external.jsoup" name="jsoup-case-sensitive" rev="1.9.2"/>
+        <dependency org="org.apache.httpcomponents" name="httpclient" rev="4.5.6"/>
+        <dependency org="org.apache.httpcomponents" name="httpmime" rev="4.5.6"/>
+
+    </dependencies>
+</ivy-module>

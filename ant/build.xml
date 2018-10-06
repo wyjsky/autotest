@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--build.xml中的第一句话，没有实际的意义-->
+<!--Ant的所有内容必须包含在<project></project>里面，name是你给它取的名字，basedir指工作的根目录，.代表当前目录，default代表默认要做的事情。-->
+<project name="Test1" default="run" xmlns:ivy="antlib:org.apache.ivy.ant" basedir="..">
+    <!--<property />设置变量-->
+    <property name="src" value="src"/>
+    <property name="dest" value="classes"/>
+    <property name="test" value="test.jar"/>
+    <property name="log" value="log"/>
+    <property name="lib" value="lib" />
+    <property name="testngReport" value="test-output" />
+
+    <!--每个target代表你想做的操作，给这个操作命名，及name值，depends是它所依赖的target在执行这个target，例如这里的compile之前ant会先检查init是否曾经被执行过，如果执行
+        过则直接直接执行compile，如果没有则会先执行它依赖的target例如这里的init，然后在执行这个target-->
+    <!--新建文件夹-->
+
+    <!--<target name="resolve" description="&#45;&#45; retreive dependencies with ivy">-->
+        <!--<ivy:retrieve/>-->
+    <!--</target>-->
+
+    <path id="classes">
+        <fileset dir="${lib}" includes="*jar" />
+        <fileset dir="${lib}" includes="*zip" />
+        <pathelement location="${dst}" />
+    </path>
+
+
+    <target name="resolve" description="retreive dependencies with ivy">
+        <ivy:settings id="ivysettings" file="/Users/wyjsky/IdeaProjects/wyjauto/ivysettings.xml" />
+        <ivy:resolve settingsRef="ivysettings" file="/Users/wyjsky/IdeaProjects/wyjauto/ivy.xml"
+                     useCacheOnly="false" />
+        <ivy:retrieve/>
+    </target>
+
+
+    <target name="report" depends="resolve" description="--> generates a report of dependenci    es">
+        <ivy:report todir="${dest}"/>
+    </target>
+
+    <target name="init" depends="resolve">
+        <delete dir="${dest}"/>
+        <delete dir="${log}"/>
+        <delete dir="${testngReport}" />
+
+        <mkdir dir="${log}"/>
+        <mkdir dir="${dest}"/>
+        <delete dir="${testngReport}" />
+    </target>
+
+    <!--开始编辑-->
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${dest}" classpathref="classes" includeantruntime="default"/>
+    </target>
+    <!--创建jar包-->
+    <target name="build" depends="compile">
+        <jar jarfile="${test}" basedir="${dest}"/>
+    </target>
+    <!--开始运行-->
+    <target name="run" depends="build">
+        <!--<java classname="com.test.Test1" classpath="${test}"/>-->
+        <exec executable="/bin/sh">
+            <arg value="-c" />
+            <arg
+                    value="java -classpath ${test}:./lib/*:./classes/ org.testng.TestNG testng.xml -d ${testngReport}"/>
+        </exec>
+    </target>
+
+    <!--删除生成的文件-->
+    <target name="clean" depends="run">
+        <delete dir="${dest}"/>
+        <delete file="${test}"/>
+    </target>
+    <target name="rerun" depends="clean,run">
+        <ant target="clean" />
+        <ant target="run" />
+    </target>
+
+</project>
+
